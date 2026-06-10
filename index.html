@@ -1,568 +1,766 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harshith Belagur — Software Engineer</title>
+  <meta name="description" content="Harshith Belagur is a Software Engineer at Meta. ML, GenAI, Full Stack.">
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8F7F4;
+      --bg-alt: #EEECEA;
+      --text: #111110;
+      --muted: #88887F;
+      --accent: #FF4500;
+      --accent-light: #FFF0EC;
+      --white: #FFFFFF;
+      --border: #E2E0DA;
+      --dark: #111110;
+      --dark-card: #1C1C1A;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --nav-h: 64px;
+      --max-w: 1200px;
+      --r: 12px;
+    }
 
-  <title>Harshith Belagur</title>
-  <meta content="" name="descriptison">
-  <meta content="" name="keywords">
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    .section-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 48px;
+    }
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(248,247,244,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      z-index: 100;
+      transition: border-color 0.2s;
+    }
+    nav.scrolled { border-bottom-color: var(--border); }
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px;
+      height: 100%; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: -0.02em; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color 0.18s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--text) !important; color: var(--bg) !important;
+      padding: 8px 18px; border-radius: 100px;
+      font-weight: 600 !important; transition: background 0.18s, transform 0.18s !important;
+    }
+    .nav-cta:hover { background: var(--accent) !important; color: #fff !important; transform: translateY(-1px); }
 
-  <!-- =======================================================
-  * Template Name: iPortfolio - v1.2.1
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; padding-top: var(--nav-h);
+      display: flex; align-items: center; position: relative; overflow: hidden;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 380px; gap: 64px; align-items: center; width: 100%;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent-light); color: var(--accent);
+      font-size: 12px; font-weight: 600; padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 7.5vw, 92px);
+      font-weight: 700; line-height: 1.0; letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .hero-name .dot { color: var(--accent); }
+
+    .hero-typed {
+      font-family: var(--font-display); font-size: clamp(17px, 2.2vw, 22px);
+      font-weight: 600; color: var(--text); margin-bottom: 20px; min-height: 32px;
+    }
+    .cursor {
+      display: inline-block; width: 2px; height: 1em;
+      background: var(--accent); vertical-align: text-bottom;
+      animation: blink 1s step-end infinite; margin-left: 2px;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    .hero-tagline { font-size: 17px; color: var(--muted); max-width: 500px; margin-bottom: 36px; line-height: 1.65; }
+
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
+
+    .btn-solid {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--text); color: var(--bg);
+      padding: 13px 26px; border-radius: 100px;
+      font-family: var(--font-display); font-size: 14px; font-weight: 600;
+      transition: background 0.18s, transform 0.18s;
+    }
+    .btn-solid:hover { background: var(--accent); transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--text);
+      padding: 13px 26px; border-radius: 100px; border: 1.5px solid var(--border);
+      font-family: var(--font-display); font-size: 14px; font-weight: 600;
+      transition: border-color 0.18s, background 0.18s, transform 0.18s;
+    }
+    .btn-ghost:hover { border-color: var(--text); background: var(--bg-alt); transform: translateY(-2px); }
+
+    .hero-socials { display: flex; gap: 12px; }
+    .social-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1.5px solid var(--border); color: var(--muted); font-size: 17px;
+      transition: border-color 0.18s, color 0.18s, transform 0.18s;
+    }
+    .social-icon:hover { border-color: var(--text); color: var(--text); transform: translateY(-2px); }
+
+    .hero-photo { position: relative; }
+    .hero-photo img {
+      width: 100%; height: 480px; object-fit: cover; object-position: top;
+      border-radius: 20px;
+    }
+    .hero-photo-card {
+      position: absolute; bottom: -16px; left: -20px;
+      background: var(--white); border-radius: var(--r); padding: 16px 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+    }
+    .hero-photo-card .num { font-family: var(--font-display); font-size: 26px; font-weight: 700; line-height: 1; }
+    .hero-photo-card .lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    .hero-scroll {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+    }
+    .hero-scroll-line {
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+      animation: scrollDrop 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollDrop {
+      0%{transform:scaleY(0);transform-origin:top}
+      50%{transform:scaleY(1);transform-origin:top}
+      51%{transform-origin:bottom}
+      100%{transform:scaleY(0);transform-origin:bottom}
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg-alt); padding: 72px 0; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .about-text { font-size: 17px; line-height: 1.75; color: var(--text); }
+    .about-text strong { color: var(--accent); font-weight: 600; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat-card {
+      background: var(--white); border-radius: var(--r); padding: 22px 20px;
+      border: 1.5px solid var(--border);
+    }
+    .stat-num { font-family: var(--font-display); font-size: 34px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--white); }
+    .projects-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; }
+    .projects-head .section-title { margin-bottom: 0; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .proj-card {
+      background: var(--bg); border-radius: var(--r); overflow: hidden;
+      border: 1.5px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .proj-card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,0.08); border-color: var(--accent); }
+    .proj-card.wide { grid-column: span 2; }
+
+    .proj-img {
+      height: 196px; background: var(--bg-alt);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative; font-size: 52px;
+    }
+    .proj-card.wide .proj-img { height: 220px; }
+    .proj-img img { width: 100%; height: 100%; object-fit: cover; }
+    .new-badge {
+      position: absolute; top: 12px; right: 12px;
+      background: var(--accent); color: #fff;
+      font-size: 10px; font-weight: 700; letter-spacing: .07em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+    }
+
+    .proj-body { padding: 22px; }
+    .proj-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .proj-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .tag {
+      font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 100px;
+      background: var(--bg-alt); color: var(--muted); border: 1px solid var(--border);
+    }
+    .proj-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 13px; font-weight: 600; color: var(--accent);
+      transition: gap 0.18s;
+    }
+    .proj-link:hover { gap: 9px; }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg); }
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 0;
+      width: 1px; background: var(--border);
+    }
+    .tl-item { position: relative; padding-bottom: 44px; }
+    .tl-item::before {
+      content: ''; position: absolute; left: -33px; top: 8px;
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--white); border: 2px solid var(--border);
+      transition: border-color .18s, background .18s;
+    }
+    .tl-item:hover::before, .tl-item.current::before { border-color: var(--accent); background: var(--accent); }
+
+    .tl-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px; flex-wrap: wrap; }
+    .tl-role { font-family: var(--font-display); font-size: 18px; font-weight: 700; }
+    .tl-company { font-size: 14px; font-weight: 600; color: var(--accent); }
+    .tl-meta { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+    .tl-bullets { display: flex; flex-direction: column; gap: 7px; }
+    .tl-bullets li {
+      font-size: 14px; color: var(--muted); padding-left: 16px;
+      position: relative; line-height: 1.55;
+    }
+    .tl-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 1px; }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--white); }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+    .skill-group-name {
+      font-family: var(--font-display); font-size: 12px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-chip {
+      font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 100px;
+      background: var(--bg); color: var(--text); border: 1.5px solid var(--border);
+      transition: border-color .18s, color .18s, background .18s;
+    }
+    .skill-chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+    /* ── WRITING & SPEAKING ── */
+    #writing { background: var(--bg); }
+    .writing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .writing-card {
+      background: var(--white); border-radius: var(--r); padding: 28px;
+      border: 1.5px solid var(--border);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .writing-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.06); }
+    .writing-emoji { font-size: 28px; margin-bottom: 14px; }
+    .writing-type { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .writing-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+    .writing-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .writing-link { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; color: var(--accent); transition: gap .18s; }
+    .writing-link:hover { gap: 9px; }
+
+    /* ── FOOD ── */
+    #food { background: var(--dark); padding: 80px 0; }
+    #food .section-label { color: rgba(255,255,255,.35); }
+    #food .section-title { color: #fff; margin-bottom: 12px; }
+    .food-sub { font-size: 15px; color: rgba(255,255,255,.4); margin-bottom: 44px; max-width: 460px; }
+    .food-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .food-card {
+      background: var(--dark-card); border-radius: var(--r); padding: 26px;
+      border: 1px solid rgba(255,255,255,.07);
+    }
+    .food-card-title {
+      font-family: var(--font-display); font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 16px;
+    }
+    .food-list { display: flex; flex-direction: column; gap: 10px; counter-reset: food; }
+    .food-list li {
+      counter-increment: food; display: flex; align-items: center; gap: 12px;
+      font-size: 14px; color: rgba(255,255,255,.6);
+    }
+    .food-list li::before {
+      content: counter(food); min-width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; background: rgba(255,255,255,.07);
+      font-size: 11px; font-weight: 700; color: rgba(255,255,255,.35);
+      font-family: var(--font-display);
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--dark); border-top: 1px solid rgba(255,255,255,.07); padding: 96px 0 64px; }
+    #contact .section-label { color: rgba(255,255,255,.3); }
+    .contact-heading {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5.5vw, 68px);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.05;
+      color: #fff; margin-bottom: 24px;
+    }
+    .contact-heading .accent { color: var(--accent); }
+    .contact-sub { font-size: 17px; color: rgba(255,255,255,.45); max-width: 440px; margin-bottom: 44px; }
+    .contact-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 64px; }
+
+    .btn-accent {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #fff;
+      padding: 13px 26px; border-radius: 100px;
+      font-family: var(--font-display); font-size: 14px; font-weight: 600;
+      transition: transform .18s, opacity .18s;
+    }
+    .btn-accent:hover { transform: translateY(-2px); opacity: .88; }
+
+    .btn-ghost-inv {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: #fff;
+      padding: 13px 26px; border-radius: 100px; border: 1.5px solid rgba(255,255,255,.18);
+      font-family: var(--font-display); font-size: 14px; font-weight: 600;
+      transition: border-color .18s, transform .18s;
+    }
+    .btn-ghost-inv:hover { border-color: rgba(255,255,255,.6); transform: translateY(-2px); }
+
+    .contact-footer {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 28px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    }
+    .contact-footer-name { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: rgba(255,255,255,.5); }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,.35); transition: color .18s; }
+    .footer-links a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-photo { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .proj-card.wide { grid-column: span 2; }
+    }
+    @media (max-width: 768px) {
+      .section, #about, #food, #contact { padding: 64px 0; }
+      .nav-links { display: none; }
+      .projects-grid, .skills-grid, .writing-grid, .food-grid { grid-template-columns: 1fr; }
+      .proj-card.wide { grid-column: span 1; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      .contact-footer { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- ======= Mobile nav toggle button ======= -->
-  <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
-
-  <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="d-flex flex-column">
-
-      <div class="profile">
-        <img src="assets/img/image.jpg" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="index.html">Harshith Belagur</a></h1>
-        <div class="social-links mt-3 text-center">
-          <a href="https://www.facebook.com/harshith.belagur" class="facebook"><i class="bx bxl-facebook"></i></a>
-          <a href="https://www.linkedin.com/in/harshith-belagur" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-          <a href="https://www.youtube.com/@MastersWithHarshith" class="youtube"><i class="bx bxl-youtube"></i></a>
-        </div>
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Harshith Belagur</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#writing">Writing</a>
+        <a href="#contact" class="nav-cta">Say Hello</a>
       </div>
-
-      <nav class="nav-menu">
-        <ul>
-          <li class="active"><a href="index.html"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="#about"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="#resume"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-          <li><a href="#portfolio"><i class="bx bx-book-content"></i> Projects</a></li>
-          <li><a href="#contact"><i class="bx bx-envelope"></i> Contact</a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
-      <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
-
     </div>
-  </header><!-- End Header -->
+  </nav>
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-    <div class="hero-container" data-aos="fade-in">
-      <h1 style=font-size:75px>Harshith Belagur</h1>
-      <p>Anything <span class="typed" data-typed-items="Gen AI, Software Engineering, LLM and RAGs, Machine Learning Engineering, Payments"></span></p>
-    </div>
-  </section><!-- End Hero -->
-
-  <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>About</h2>
-          <p>Process-driven individual with refined interpersonal and multitasking skills looking to join a progressive, fast-paced company that would put my skills and abilities to test, and yet, simultaneously allow me to learn and contribute. Currently pursuing Masters of Science in Computer Science (Machine Learning track) at Columbia University, New York.</p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4" data-aos="fade-right">
-            <img src="assets/img/unnamed.jpeg" class="img-fluid" alt="" style="height: 426px;">
-          </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3>Machine Learning Engineer &amp; Software Engineer</h3>
-            <p class="font-italic">
-            </p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="icofont-rounded-right"></i> <strong>Birthday:</strong> 12 May 1999</li>
-                  <li><i class="icofont-rounded-right"></i> <strong>Website:</strong> harshithbelagur.github.io</li>
-                  <li><i class="icofont-rounded-right"></i> <strong>Phone:</strong> +1 516 779 0729</li>
-                  <li><i class="icofont-rounded-right"></i> <strong>City:</strong> New York, NY, United States (currently in San Francisco)</li>
-                </ul>
-              </div>
-
-              <style>
-                .whiteText
-                {
-                    color:white;
-                }
-                .blackText
-                {
-                    color:black;
-                }
-            </style>
-            
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="icofont-rounded-right"></i> <strong>Age:</strong> 25</li>
-                  <li><i class="icofont-rounded-right"></i> <strong>Degree:</strong> Pursuing MS CS at Columbia University, New York</li>
-                  <li><i class="icofont-rounded-right"></i> <strong>Email:</strong> h.belagur1980@gmail.com</li>
-                </ul>
-              </div>
-            </div>
-            <p>Currently interning at <strong>Modern Treasury</strong>. Previously worked with <strong>Articulate AI</strong> as a part-time Machine Learning Engineer for six months, at <strong>Mastercard</strong> for two years as a Software Engineer, and interned at <strong>Fidelity Investment's AI Incubator</strong></strong></p>
-            <p>Founded <strong>Creightillion Foundation</strong> and <strong>Big Data and Analytics Club, NIT-W</strong></p>
-            <p><strong>TEDx</strong> Speaker and <strong>Masters with Harshith</strong> Podcast Host</p>
-            <p>Got an interesting opportunity? Get in touch!</p>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Facts Section ======= -->
-    <section id="facts" class="facts">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Figures</h2>
-          <p>Numbers from over the last 7 years</p>
-        </div>
-
-        <div class="row no-gutters">
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="count-box">
-              <i class="icofont-document-folder"></i>
-              <span data-toggle="counter-up">2.5</span>
-              <p><strong>Years </strong>work experience</p>
-            </div>
-          </div>
-
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="count-box">
-              <i class="icofont-certificate-alt-1"></i>
-              <span data-toggle="counter-up">1</span>
-              <p><strong>Research Paper</strong> published</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
-            <div class="count-box">
-              <i class="icofont-university"></i>
-              <span data-toggle="counter-up">4.12</span>
-              <p><strong>Graduate</strong> GPA</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="count-box">
-              <i class="icofont-award"></i>
-              <span data-toggle="counter-up">8</span>
-              <p><strong>Awards</strong> and Scholarships</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Facts Section -->
-
-    <!-- ======= Skills Section ======= -->
-    <section id="skills" class="skills section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Skills</h2>
-        </div>
-
-        <div class="row skills-content">
-
-          <div class="col-lg-12" data-aos="fade-up">
-            <p><strong>Programming Languages: </strong>C++, Python, Ruby, C#, Typescript, Javascript, HTML, CSS, SQL, Go</p>
-            <p><strong>Tools/Frameworks: </strong>Flask, Ruby on Rails, Langchain, Postgresql, React, Git, AWS (Certified Cloud Practitioner), Docker, Terraform, Kubernetes, PyTorch, Apache Spark, REST API, .NET</p>
-            
-            <!-- <div class="progress">
-              <span class="skill">C++ <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">React <i class="val">85%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="progress">
-              <span class="skill">Python <i class="val">85%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">C# <i class="val">85%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-          </div> -->
-
-        </div>
-
-      </div>
-    </section><!-- End Skills Section -->
-
-    <!-- ======= Resume Section ======= -->
-    <section id="resume" class="resume">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Resume</h2>
-          <p>Last Updated on Septmeber 3, 2024</p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6" data-aos="fade-up">
-            <h3 class="resume-title">Summary</h3>
-            <div class="resume-item pb-0">
-              <h4>Harshith Belagur</h4>
-              <p><em>Experienced and data-driven Machine Learning Engineer/Software Developer with a powerful skillset capable of delivering results from initial concept to final, polished deliverables.</em></p>
-            </div>
-
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Master of Science, Computer Science (Machine Learning Track)</h4>
-              <h5>2023 - December, 2024</h5>
-              <p><em>Columbia University, New York</em></p>
-              <p>GPA - <strong>4.12/4</strong> </p>
-              <p><strong>Courses - </strong>Machine Learning on the Cloud, Applied Machine Learning, Advanced Spoken Language Processing, Large Scale Stream Processing, Natural Language Processing, Databases, Analysis of Algorithms, Data Driven Approaches for Campaigns and Advocacy, Startup Fundamentals</p>
-              <p><strong>Teaching Assistantships - </strong>Introduction to Databases</p>
-              <p><strong>Activities -</strong> AI Governance Fellow</p>
-            </div>
-            <div class="resume-item">
-              <h4>Bachelor of Technology, Computer Science and Engineering</h4>
-              <h5>2017 - 2021</h5>
-              <p><em>National Institute of Technology, Warangal, India</em></p>
-              <p>CGPA - <strong>8.92/10</strong> </p>
-              <p><strong>Activities - </strong>Big Data and Analytics Club, IEEE Student Body, Student Council, Literary and Debating Club</p>
-            </div>
-          </div>
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
-              <h4>Software Engineer Intern, Modern Treasury</h4>
-              <h5>May, 2024 - September, 2024</h5>
-              <p><em>San Francisco, CA </em></p>
-              <ul>
-               <li>Developing a payment tracking system using Ruby on Rails and GraphQL, enhancing customer visibility into
-                payment transaction status and estimated completion time.</li>
-                <li>Deployed the company’s first LLM-based solution to production for an internal use with logging and auditing
-                  mechanisms enabling 43% fewer on-call alerts</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>Software Engineer II, Mastercard</h4>
-              <h5>July, 2021 - July, 2023</h5>
-              <p><em>Pune, India </em></p>
-               <ul>
-               <li>Architected a rule-based automated recommendation system with an interactive front-end UI and a functional CI/CD pipeline for one of the Mastercard Sales teams leveraging data from the Mastercard data warehouses</li>
-               <li>Developed and documented the entire system comprising multiple APIs enabling users to better identify product recommendations across portfolios, increasing sales by 37%</li>
-               <li>Redesigned an existing web component in React and .NET helping corporate users improve efficiency by 26%</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>Summer Intern, Fidelity Investments (AI Incubator) </h4>
-              <h5>May, 2020 - June, 2020</h5>
-              <p><em>Chennai, India </em></p>
-              <ul>
-                <li>Engineered a Natural Language Generation (NLG) system with Neo4j to summarize and answer questions based on text documents helping the consultancy and legal team reduce the number of documents scanned by 43%</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Resume Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Projects</h2>
-        </div>
-
-        <div class="row" data-aos="fade-up">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-software">Software Engineering</li>
-              <li data-filter=".filter-mle">Machine Learning Engineering</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-mle filter-software">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/llama3.png" class="img-fluid" alt="" style="height:300px; width:400px" class="center">
-              <div class="portfolio-links">
-                <a href="https://github.com/harshithbelagur/medllama" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-              <div class="project-text"><p>Fine-tuning Llama3 for medical domain conversations using an L4 GPU, Kubernetes, and Streamlit</p></div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-software">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/spark.jpeg" class="img-fluid" alt="" style="height:300px; width:400px" class="center">
-              <div class="portfolio-links">
-                <a href="https://github.com/harshithbelagur/lssp-parkinsons" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-              <div class="project-text"><p>Real-time Parkison's detection using streaming in Apache Spark</p></div>
-            </div>
-          </div>
-          
-          <div class="col-lg-4 col-md-6 portfolio-item filter-software">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/flask.png" class="img-fluid" alt="" style="height:300px; width:500px" class="center">
-              <div class="portfolio-links">
-                <a href="https://github.com/harshithbelagur/cs-w4111-project" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-              <div class="project-text"><p>Mock Financial Processing Company using Flask and Postgres</p></div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-mle">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-14.png" class="img-fluid" alt="" style="height:300px; width:500px" class="center">
-              <div class="portfolio-links">
-                <a href="https://link.springer.com/article/10.1007/s11042-023-15606-4" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-              <div class="project-text"><p>Cross-modal multi-headed attention for long multimodal conversations</p></div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-mle">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/nba.png" class="img-fluid" alt="" style="height:300px; width:500px" class="center">
-              <div class="portfolio-links">
-                <a href="https://github.com/harshithbelagur/aml-project" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-              <div class="project-text"><p>NBA Game Result Prediction using Ensemble techniques</p></div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-mle">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/nsight.jpeg" class="img-fluid" alt="" style="height:300px; width:500px" class="center">
-              <div class="portfolio-links">
-                <a href="https://github.com/harshithbelagur/neural-network-gpu-performance-analysis" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-              <div class="project-text"><p>Neural Network Model Performance Analysis using NVIDIA NSight</p></div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-software">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-11.png" class="img-fluid" alt="" style="height:300px; width:500px" class="center">
-              <div class="portfolio-links">
-                <a href="https://github.com/harshithbelagur/mutli-docker" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-              <div class="project-text"><p>Deploying a Kubernetes application on AWS using nginx and Travis CI</p></div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-software">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-4.png" class="img-fluid" alt="" style="height:300px; width:500px" class="center">
-              <div class="portfolio-links">
-                <a href="https://github.com/harshithbelagur/padhoindia-app" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-              <div class="project-text"><p>Padho India iOS App</p></div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Portfolio Section -->
-
-    <!-- ======= Food Ratings Section ======= -->
-    <section id="food-ratings" class="food-ratings section-bg">
-      <div class="container">
-        <div class="section-title">
-          <h2>Food Ratings</h2>
-          <p>My personal rankings of the best food spots I've tried in New York City (Note: I'm not a food critic and I'm vegetarian)</p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4" data-aos="fade-up">
-            <div class="food-category">
-              <h3>Top Cheesecakes</h3>
-              <ol>
-                <li>Eileen's Special</li>
-                <li>Hungarian Pastry Shop</li>
-                <li>Junior's</li>
-                <!-- Add more as needed -->
-              </ol>
-            </div>
-          </div>
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="food-category">
-              <h3>Best Pizzas</h3>
-              <ol>
-                <li>Lucali (Brooklyn)</li>
-                <li>L'Industrie</li>
-                <li>Artichoke Pizza</li>
-                <!-- Add more as needed -->
-              </ol>
-            </div>
-          </div>
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="food-category">
-              <h3>Favorite Bagels</h3>
-              <ol>
-                <li>Apollo Bagels</li>
-                <li>Absolute Bagels</li>
-                <li>Liberty Bagels</li>
-                <!-- Add more as needed -->
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section><!-- End Food Ratings Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Contact Details</h2>
-        </div>
-
-        <div class="row" data-aos="fade-in">
-
-          <div class="col-lg-5 d-flex align-items-stretch">
-            <div class="info">
-              <div class="address">
-                <i class="icofont-google-map"></i>
-                <h4>Location:</h4>
-                <p>Manhattan, New York</p>
-              </div>
-
-              <div class="email">
-                <i class="icofont-envelope"></i>
-                <h4>Email:</h4>
-                <p>h.belagur1980@gmail.com</p>
-              </div>
-
-              <div class="phone">
-                <i class="icofont-phone"></i>
-                <h4>Call:</h4>
-                <p>+1 (516) 779 0729</p>
-              </div>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12079.275684841868!2d-73.9740513267864!3d40.809972792061714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2f63f08cd0763%3A0x77809d4d5fe45c5!2sMorningside%20Heights%2C%20New%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1688654593978!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>            </div>
-          </div>
-
-          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                  <div class="validate"></div>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="name">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" data-rule="email" data-msg="Please enter a valid email" />
-                  <div class="validate"></div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="name">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                <div class="validate"></div>
-              </div>
-              <div class="form-group">
-                <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
-                <div class="validate"></div>
-              </div>
-              <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Contact Section -->
-
-    <!-- ======= Footer ======= -->
-  <footer id="footer">
+  <!-- HERO -->
+  <section id="hero">
     <div class="container">
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
-        Inspired by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      <div class="hero-grid">
+        <div>
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Currently at Meta &middot; Sunnyvale, CA
+          </div>
+          <h1 class="hero-name">Harshith<br>Belagur<span class="dot">.</span></h1>
+          <div class="hero-typed">
+            <span id="typed-text"></span><span class="cursor"></span>
+          </div>
+          <p class="hero-tagline">Software Engineer building AI-powered products at Meta. I love working at the intersection of machine learning and product engineering.</p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn-solid">View Projects <i class="bx bx-arrow-right"></i></a>
+            <a href="https://github.com/harshithbelagur" class="btn-ghost" target="_blank" rel="noopener noreferrer">GitHub <i class="bx bxl-github"></i></a>
+          </div>
+          <div class="hero-socials">
+            <a href="https://www.linkedin.com/in/harshith-belagur" class="social-icon" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="bx bxl-linkedin"></i></a>
+            <a href="https://github.com/harshithbelagur" class="social-icon" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="bx bxl-github"></i></a>
+            <a href="https://www.youtube.com/@MastersWithHarshith" class="social-icon" target="_blank" rel="noopener noreferrer" title="YouTube / The HUH Show"><i class="bx bxl-youtube"></i></a>
+            <a href="mailto:h.belagur1980@gmail.com" class="social-icon" title="Email"><i class="bx bx-envelope"></i></a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="assets/img/unnamed.jpeg" alt="Harshith Belagur">
+        </div>
       </div>
     </div>
-  </footer><!-- End  Footer -->
+    <div class="hero-scroll"><div class="hero-scroll-line"></div></div>
+  </section>
 
-  </main><!-- End #main -->
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <span class="section-label">About</span>
+          <p class="about-text">
+            I'm a Software Engineer at <strong>Meta</strong>, working on reducing GPU memory footprint for ad ranking models at scale. I graduated with an MS in Computer Science (Machine Learning track) from <strong>Columbia University</strong> with a 4.12 GPA.<br><br>
+            Previously interned at <strong>Modern Treasury</strong> where I shipped the company's first LLM to production, worked as an SWE II at <strong>Mastercard</strong> for 2 years, and interned at <strong>Fidelity's AI Incubator</strong>.<br><br>
+            Outside of work, I host <strong>The HUH Show</strong> podcast, have given a <strong>TEDx Talk</strong>, and founded the <strong>Big Data &amp; Analytics Club</strong> at NIT Warangal. I'm originally from India and I care about building things that matter.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card reveal"><div class="stat-num">5+</div><div class="stat-label">Years of engineering experience</div></div>
+          <div class="stat-card reveal"><div class="stat-num">4.12</div><div class="stat-label">Graduate GPA at Columbia</div></div>
+          <div class="stat-card reveal"><div class="stat-num">1</div><div class="stat-label">Research paper published (Springer)</div></div>
+          <div class="stat-card reveal"><div class="stat-num">8+</div><div class="stat-label">Awards &amp; scholarships</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="projects-head reveal">
+        <div>
+          <span class="section-label">Projects</span>
+          <h2 class="section-title">Selected Work</h2>
+        </div>
+        <a href="https://github.com/harshithbelagur" class="btn-ghost" target="_blank" rel="noopener noreferrer" style="white-space:nowrap;align-self:center">All on GitHub <i class="bx bxl-github"></i></a>
+      </div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="assets/vendor/counterup/counterup.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/venobox/venobox.min.js"></script>
-  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
+      <div class="projects-grid">
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+        <div class="proj-card wide reveal">
+          <div class="proj-img">🤖<span class="new-badge">New</span></div>
+          <div class="proj-body">
+            <h3 class="proj-title">ReAct vs ReWOO — AI Travel Planner Agent</h3>
+            <p class="proj-desc">Comparative study of ReAct and ReWOO agentic frameworks for AI-powered travel planning using GPT-4o. Built multi-tool LLM agents with SQL and vector DBs, benchmarked across 11 scenarios. ReAct consistently cheaper — up to 125% cost reduction over ReWOO on lean tool configs.</p>
+            <div class="proj-tags">
+              <span class="tag">LLM Agents</span><span class="tag">LangGraph</span><span class="tag">GPT-4o</span><span class="tag">ReAct</span><span class="tag">ReWOO</span><span class="tag">Python</span>
+            </div>
+            <a href="https://github.com/harshithbelagur/travel-planner-agent" class="proj-link" target="_blank" rel="noopener noreferrer">View on GitHub <i class="bx bx-right-arrow-alt"></i></a>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-img">🩺</div>
+          <div class="proj-body">
+            <h3 class="proj-title">MedLlama</h3>
+            <p class="proj-desc">Fine-tuned Llama 3 on medical conversation datasets using an L4 GPU on Kubernetes. Streamlit frontend for interactive medical Q&amp;A.</p>
+            <div class="proj-tags"><span class="tag">Llama 3</span><span class="tag">Fine-tuning</span><span class="tag">Kubernetes</span><span class="tag">Streamlit</span></div>
+            <a href="https://github.com/harshithbelagur/medllama" class="proj-link" target="_blank" rel="noopener noreferrer">View on GitHub <i class="bx bx-right-arrow-alt"></i></a>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-img">⚡</div>
+          <div class="proj-body">
+            <h3 class="proj-title">Real-Time Parkinson's Detection</h3>
+            <p class="proj-desc">Real-time Parkinson's disease detection using streaming ML pipelines in Apache Spark on biomedical sensor data.</p>
+            <div class="proj-tags"><span class="tag">Apache Spark</span><span class="tag">Streaming</span><span class="tag">ML</span><span class="tag">Python</span></div>
+            <a href="https://github.com/harshithbelagur/lssp-parkinsons" class="proj-link" target="_blank" rel="noopener noreferrer">View on GitHub <i class="bx bx-right-arrow-alt"></i></a>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-img">📄</div>
+          <div class="proj-body">
+            <h3 class="proj-title">Cross-Modal Attention Research</h3>
+            <p class="proj-desc">Published in Springer — novel cross-modal multi-headed attention for long multimodal conversations.</p>
+            <div class="proj-tags"><span class="tag">Research</span><span class="tag">NLP</span><span class="tag">Attention</span><span class="tag">Springer</span></div>
+            <a href="https://link.springer.com/article/10.1007/s11042-023-15606-4" class="proj-link" target="_blank" rel="noopener noreferrer">Read Paper <i class="bx bx-right-arrow-alt"></i></a>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-img">🔬</div>
+          <div class="proj-body">
+            <h3 class="proj-title">GPU Performance Analysis</h3>
+            <p class="proj-desc">Neural network performance profiling with NVIDIA NSight. Benchmarked compute vs. memory bottlenecks across GPU architectures.</p>
+            <div class="proj-tags"><span class="tag">NVIDIA NSight</span><span class="tag">GPU</span><span class="tag">Deep Learning</span><span class="tag">Python</span></div>
+            <a href="https://github.com/harshithbelagur/neural-network-gpu-performance-analysis" class="proj-link" target="_blank" rel="noopener noreferrer">View on GitHub <i class="bx bx-right-arrow-alt"></i></a>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-img">🏀</div>
+          <div class="proj-body">
+            <h3 class="proj-title">NBA Game Prediction</h3>
+            <p class="proj-desc">Predicting NBA game outcomes using ensemble ML (XGBoost, Random Forest, stacking) with feature engineering on historical stats.</p>
+            <div class="proj-tags"><span class="tag">XGBoost</span><span class="tag">Ensemble ML</span><span class="tag">Python</span></div>
+            <a href="https://github.com/harshithbelagur/aml-project" class="proj-link" target="_blank" rel="noopener noreferrer">View on GitHub <i class="bx bx-right-arrow-alt"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section">
+    <div class="container">
+      <span class="section-label reveal">Experience</span>
+      <h2 class="section-title reveal">Where I've Worked</h2>
+
+      <div class="timeline">
+
+        <div class="tl-item current reveal">
+          <div class="tl-head">
+            <span class="tl-role">Software Engineer</span>
+            <span class="tl-company">Meta</span>
+          </div>
+          <div class="tl-meta">Feb 2025 – Present &middot; Menlo Park &amp; Sunnyvale, CA</div>
+          <ul class="tl-bullets">
+            <li>Reducing ad model GPU memory footprint via in-training embedding pruning, embedding offloading, and embedding placement optimization</li>
+            <li>Built AI agents to improve Facebook server performance</li>
+            <li>Optimized queries on high-traffic endpoints — <strong>$2.2M+</strong> annual cost savings and <strong>~29%</strong> faster server load times</li>
+          </ul>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-head">
+            <span class="tl-role">Software Engineer Intern</span>
+            <span class="tl-company">Modern Treasury</span>
+          </div>
+          <div class="tl-meta">May – Sept 2024 &middot; San Francisco, CA</div>
+          <ul class="tl-bullets">
+            <li>Built a payment tracking system with Ruby on Rails and GraphQL, improving customer visibility into transaction status</li>
+            <li>Deployed the company's first LLM-based solution to production with full logging and auditing — enabled <strong>43%</strong> fewer on-call alerts</li>
+          </ul>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-head">
+            <span class="tl-role">Software Engineer II</span>
+            <span class="tl-company">Mastercard</span>
+          </div>
+          <div class="tl-meta">July 2021 – July 2023 &middot; Pune, India</div>
+          <ul class="tl-bullets">
+            <li>Architected a rule-based recommendation system with front-end UI and CI/CD pipeline for the Sales team, increasing sales by <strong>37%</strong></li>
+            <li>Built APIs enabling product recommendations across portfolios</li>
+            <li>Redesigned a web component in React and .NET, improving corporate user efficiency by <strong>26%</strong></li>
+          </ul>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-head">
+            <span class="tl-role">AI Research Intern</span>
+            <span class="tl-company">Fidelity Investments (AI Incubator)</span>
+          </div>
+          <div class="tl-meta">May – June 2020 &middot; Chennai, India</div>
+          <ul class="tl-bullets">
+            <li>Engineered an NLG system with Neo4j to summarize and answer questions from documents — reduced documents scanned by <strong>43%</strong></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="container">
+      <span class="section-label reveal">Skills</span>
+      <h2 class="section-title reveal">Tech Stack</h2>
+      <div class="skills-grid">
+        <div class="reveal">
+          <div class="skill-group-name">Languages</div>
+          <div class="skill-tags">
+            <span class="skill-chip">Python</span><span class="skill-chip">C++</span>
+            <span class="skill-chip">Ruby</span><span class="skill-chip">TypeScript</span>
+            <span class="skill-chip">JavaScript</span><span class="skill-chip">Go</span>
+            <span class="skill-chip">SQL</span><span class="skill-chip">C#</span>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="skill-group-name">ML / AI</div>
+          <div class="skill-tags">
+            <span class="skill-chip">PyTorch</span><span class="skill-chip">LangChain</span>
+            <span class="skill-chip">LangGraph</span><span class="skill-chip">LLM Fine-tuning</span>
+            <span class="skill-chip">RAG</span><span class="skill-chip">Apache Spark</span>
+            <span class="skill-chip">Hugging Face</span>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="skill-group-name">Infra / Tools</div>
+          <div class="skill-tags">
+            <span class="skill-chip">Ruby on Rails</span><span class="skill-chip">React</span>
+            <span class="skill-chip">GraphQL</span><span class="skill-chip">Docker</span>
+            <span class="skill-chip">Kubernetes</span><span class="skill-chip">AWS</span>
+            <span class="skill-chip">Terraform</span><span class="skill-chip">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WRITING & SPEAKING -->
+  <section id="writing" class="section">
+    <div class="container">
+      <span class="section-label reveal">Writing &amp; Speaking</span>
+      <h2 class="section-title reveal">Beyond Code</h2>
+      <div class="writing-grid">
+        <div class="writing-card reveal">
+          <div class="writing-emoji">🎙️</div>
+          <div class="writing-type">Podcast</div>
+          <h3 class="writing-title">The HUH Show</h3>
+          <p class="writing-desc">Hustling Unicorns with Harshith — builders, dreamers, and doers sharing what it really takes. Candid conversations on tech, careers, and life.</p>
+          <a href="https://www.youtube.com/@MastersWithHarshith" class="writing-link" target="_blank" rel="noopener noreferrer">Watch on YouTube <i class="bx bx-right-arrow-alt"></i></a>
+        </div>
+        <div class="writing-card reveal">
+          <div class="writing-emoji">🎤</div>
+          <div class="writing-type">Speaking</div>
+          <h3 class="writing-title">TEDx Speaker</h3>
+          <p class="writing-desc">Delivered a TEDx Talk exploring ideas at the intersection of technology, education, and human potential.</p>
+        </div>
+        <div class="writing-card reveal">
+          <div class="writing-emoji">📖</div>
+          <div class="writing-type">Research</div>
+          <h3 class="writing-title">Cross-Modal Multi-Headed Attention</h3>
+          <p class="writing-desc">Published in Springer's Multimedia Tools and Applications — novel attention mechanism for long multimodal conversations.</p>
+          <a href="https://link.springer.com/article/10.1007/s11042-023-15606-4" class="writing-link" target="_blank" rel="noopener noreferrer">Read Paper <i class="bx bx-right-arrow-alt"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOD RATINGS -->
+  <section id="food">
+    <div class="container">
+      <span class="section-label">The Important Stuff</span>
+      <h2 class="section-title">NYC Food Rankings</h2>
+      <p class="food-sub">My personal rankings — strictly vegetarian. Not a food critic, just very opinionated.</p>
+      <div class="food-grid">
+        <div class="food-card reveal">
+          <div class="food-card-title">🍰 Top Cheesecakes</div>
+          <ol class="food-list">
+            <li>Eileen's Special Cheesecake</li>
+            <li>Hungarian Pastry Shop</li>
+            <li>Junior's</li>
+          </ol>
+        </div>
+        <div class="food-card reveal">
+          <div class="food-card-title">🍕 Best Pizzas</div>
+          <ol class="food-list">
+            <li>Lucali (Brooklyn)</li>
+            <li>L'Industrie</li>
+            <li>Artichoke Pizza</li>
+          </ol>
+        </div>
+        <div class="food-card reveal">
+          <div class="food-card-title">🥯 Favorite Bagels</div>
+          <ol class="food-list">
+            <li>Apollo Bagels</li>
+            <li>Absolute Bagels</li>
+            <li>Liberty Bagels</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <span class="section-label">Contact</span>
+      <h2 class="contact-heading reveal">Let's build something<br><span class="accent">great.</span></h2>
+      <p class="contact-sub reveal">Interesting opportunity, collaboration, or just want to say hello — my inbox is always open.</p>
+      <div class="contact-actions reveal">
+        <a href="mailto:h.belagur1980@gmail.com" class="btn-accent">Send Email <i class="bx bx-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/harshith-belagur" class="btn-ghost-inv" target="_blank" rel="noopener noreferrer">LinkedIn <i class="bx bxl-linkedin"></i></a>
+      </div>
+      <div class="contact-footer">
+        <div class="contact-footer-name">Harshith Belagur</div>
+        <div class="footer-links">
+          <a href="https://github.com/harshithbelagur" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/harshith-belagur" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.youtube.com/@MastersWithHarshith" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a href="mailto:h.belagur1980@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Typed animation
+    const roles = ['Software Engineer @ Meta', 'ML / GenAI Builder', 'Full Stack Engineer', 'AI Systems Developer'];
+    let ri = 0, ci = 0, del = false;
+    const el = document.getElementById('typed-text');
+    function type() {
+      const cur = roles[ri];
+      if (!del) {
+        el.textContent = cur.slice(0, ++ci);
+        if (ci === cur.length) { del = true; setTimeout(type, 2200); return; }
+      } else {
+        el.textContent = cur.slice(0, --ci);
+        if (ci === 0) { del = false; ri = (ri + 1) % roles.length; }
+      }
+      setTimeout(type, del ? 45 : 75);
+    }
+    type();
+
+    // Nav scroll shadow
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 16), { passive: true });
+
+    // Reveal on scroll
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
 
 </body>
-
 </html>
